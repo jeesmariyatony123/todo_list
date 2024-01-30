@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Whisper&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div id="newtask">
+            <input type="text" placeholder="Task to be done...">
+            <button id="push">Add</button>
+        </div>
+        <div id="tasks">
+        </div>
+    </div>
+</body>
+<script>
+    document.querySelector('#push').onclick = function () {
+        if (document.querySelector('#newtask input').value.length == 0) {
+            alert("Please Enter a Task")
+        } else {
+            document.querySelector('#tasks').innerHTML += ` 
+            <div class="task">
+                <span id="taskname">
+                    ${document.querySelector('#newtask input').value}
+                </span>
+                <button class="delete">X</button>
+            </div>
+            `;
+        }
+        var current_tasks = document.
+            querySelectorAll(".delete");
+        for (var i = 0; i < current_tasks.length; i++) {
+            current_tasks[i].onclick = function () {
+                this.parentNode.remove();
+            }
+        }
+        var tasks = document.querySelectorAll(".task");
+        for (var i = 0; i < tasks.length; i++) {
+            tasks[i].onclick = function () {
+                this.classList.toggle('completed');
+            }
+        }
+        document.querySelector("#newtask input").value="";
+    }
+</script>
+
+</html>
